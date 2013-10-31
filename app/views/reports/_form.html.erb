@@ -1,0 +1,23 @@
+<%= semantic_form_for(@report) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.inputs do %>
+    <%= f.input :title %>
+    <%= f.input :inc_date, :label => "Incident_Date"  %>
+    <%= f.input :description %>
+    <%= f.input :report_types, :as => :check_boxes, :required => false %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button %>
+    <%= f.action :cancel, :as => :link %>
+  <% end %>
+<% end %>
